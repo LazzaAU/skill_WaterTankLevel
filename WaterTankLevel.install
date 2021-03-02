@@ -1,0 +1,24 @@
+{
+	"name": "WaterTankLevel",
+	"speakableName": "Water tank level",
+	"version": "0.0.1",
+	"icon": "fab fa-battle-net",
+	"category": "assistance",
+	"author": "LazzaAU",
+	"maintainers": [],
+	"desc": "Announce water tank levels and states",
+	"aliceMinVersion": "1.0.0-b3",
+	"pipRequirements": [
+		""
+	],
+	"systemRequirements": [
+		""
+	],
+	"conditions": {
+		"lang": [
+			"en"
+		],
+		"online": true,
+		"asrArbitraryCapture": true
+	}
+}
