@@ -1,6 +1,96 @@
 {
-	"dummy": [
-		"example sentence",
-		"another example sentence"
-	]
+	"tankLevel4-4": {
+		"default": [
+			"Your {0} appears to be full, {1} ",
+			"The {0} is currently reading full, {1}",
+			"{0} is showing a level of full, {1}",
+			"You can't fit much more in {0} as it is already showing full, {1}"
+		],
+		"short": [
+			"it's full"
+		]
+	},
+	"tankLevel4-3": {
+		"default": [
+			"Your {0} is sitting at 75 percent full {1}",
+			"The {0} is three quarters full {1}",
+			"{0} is roughly around 75 percent full {1}",
+			"looking at {0}, i believe it is some where around three quarters full {1}"
+		],
+		"short": [
+			"It's 75 %"
+		]
+	},
+	"tankLevel4-2": {
+		"default": [
+			"Your {0} is sitting at 50 percent full {1}",
+			"The {0} is half full {1}",
+			"{0} is roughly around 50 percent full {1}",
+			"looking at your {0}, i believe it is some where around half full {1}"
+		],
+		"short": [
+			"It's 50 %"
+		]
+	},
+	"tankLevel4-1": {
+		"default": [
+			"Your {0} is sitting at 25 percent full {1}",
+			"The {0} is down to 1 quarter full {1}",
+			"{0} is roughly around 25 percent full {1}",
+			"looking at your {0}, i believe it is some where around a quarter full {1}"
+		],
+		"short": [
+			"It's 25 %"
+		]
+	},
+	"tankLevelEmpty": {
+		"default": [
+			"She's empty as bro",
+			"aint got nothing in that tank. It's empty"
+		],
+		"short": [
+			"Tis empty i say "
+		]
+	},
+	"dualTankLevel": {
+		"default": [
+			"and "
+		],
+		"short": [
+			"and"
+		]
+	},
+	"tankLevel3-3": {
+		"default": [
+			"Your {0} appears to be full {1}",
+			"The {0} is currently reading full {1}",
+			"{0} is showing a level of full {1}",
+			"You can't fit much more in {0} as it is already showing full {1}"
+		],
+		"short": [
+			"It's 100 %"
+		]
+	},
+	"tankLevel3-2": {
+		"default": [
+			"Your {0} is sitting at two thirds full {1}",
+			"The {0} is 2 thirds full {1}",
+			"{0} is roughly around 2 thirds full {1}",
+			"looking at your {0}, i believe it is some where around two thirds full {1}"
+		],
+		"short": [
+			"It's two thirds full"
+		]
+	},
+	"tankLevel3-1": {
+		"default": [
+			"Your {0} is approximately one third full {1}",
+			"The {0} is only 1 third full {1}",
+			"{0} is roughly around 1 third full {1}",
+			"looking at your {0}, i believe it is getting low at around 1 third full {1}"
+		],
+		"short": [
+			"It's one third"
+		]
+	}
 }
