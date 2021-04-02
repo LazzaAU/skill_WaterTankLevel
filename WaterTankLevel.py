@@ -38,9 +38,13 @@ class WaterTankLevel(AliceSkill):
 			device2 = self.DeviceManager.getDeviceByName(tankType[1])
 			text2 = self.getTankLevels(device=device2)
 			textOutPut = f"{text1} and {text2}"
+			if "None" in textOutPut:
+				self.logPrint(f'yes none is in {textOutPut}')
+				textOutPut.replace("None", "")
 		else:
 			textOutPut = self.getTankLevels(device=device)
-
+			if "None" in textOutPut:
+				textOutPut.replace("None", "")
 		self.sayTheLevels(text=textOutPut, session=session)
 
 	@staticmethod

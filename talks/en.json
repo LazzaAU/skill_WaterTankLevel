@@ -12,10 +12,10 @@
 	},
 	"tankLevel4-3": {
 		"default": [
-			"Your {0} is sitting at 75 percent full {1}",
-			"The {0} is three quarters full {1}",
-			"{0} is roughly around 75 percent full {1}",
-			"looking at {0}, i believe it is some where around three quarters full {1}"
+			"Your {0} is sitting at 75 percent full, {1}",
+			"The {0} is three quarters full, {1}",
+			"{0} is roughly around 75 percent full, {1}",
+			"looking at {0}, i believe it is some where around three quarters full, {1}"
 		],
 		"short": [
 			"It's 75 %"
@@ -23,10 +23,10 @@
 	},
 	"tankLevel4-2": {
 		"default": [
-			"Your {0} is sitting at 50 percent full {1}",
-			"The {0} is half full {1}",
-			"{0} is roughly around 50 percent full {1}",
-			"looking at your {0}, i believe it is some where around half full {1}"
+			"Your {0} is sitting at 50 percent full, {1}",
+			"The {0} is half full, {1}",
+			"{0} is roughly around 50 percent full, {1}",
+			"looking at your {0}, i believe it is some where around half full, {1}"
 		],
 		"short": [
 			"It's 50 %"
@@ -34,10 +34,10 @@
 	},
 	"tankLevel4-1": {
 		"default": [
-			"Your {0} is sitting at 25 percent full {1}",
-			"The {0} is down to 1 quarter full {1}",
-			"{0} is roughly around 25 percent full {1}",
-			"looking at your {0}, i believe it is some where around a quarter full {1}"
+			"Your {0} is sitting at 25 percent full, {1}",
+			"The {0} is down to 1 quarter full, {1}",
+			"{0} is roughly around 25 percent full, {1}",
+			"looking at your {0}, i believe it is some where around a quarter full, {1}"
 		],
 		"short": [
 			"It's 25 %"

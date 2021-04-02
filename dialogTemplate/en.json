@@ -2,15 +2,27 @@
 	"skill": "WaterTankLevel",
 	"slotTypes": [
 		{
-			"name": "DummySlot",
+			"name": "WaterTank",
 			"matchingStrictness": null,
 			"automaticallyExtensible": false,
 			"useSynonyms": true,
 			"values": [
 				{
-					"value": "foo",
+					"value": "rain water",
 					"synonyms": [
-						"bar"
+						"rain water tank"
+					]
+				},
+				{
+					"value": "grey water",
+					"synonyms": [
+						"grey water tank"
+					]
+				},
+				{
+					"value": "fresh water",
+					"synonyms": [
+						"fresh water tank"
 					]
 				}
 			]
@@ -18,17 +30,21 @@
 	],
 	"intents": [
 		{
-			"name": "Dummy",
+			"name": "SayWaterTankLevel",
 			"enabledByDefault": true,
 			"utterances": [
-				"dummy {foo:=>DummySlotName}",
-				"bar"
+				"what level is my {rain water tank:=>WaterTank}",
+				"how much water do i have in the {fresh water:=>WaterTank}",
+				"what's the level of the {rain water tank:=>WaterTank}",
+				"check the {fresh water tank:=>WaterTank}",
+				"how full is the {rain water:=>WaterTank} tank"
+
 			],
 			"slots": [
 				{
-					"name": "DummySlotName",
+					"name": "WaterTank",
 					"required": false,
-					"type": "DummySlot",
+					"type": "WaterTank",
 					"missingQuestion": ""
 				}
 			]
