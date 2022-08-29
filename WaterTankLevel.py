@@ -13,16 +13,16 @@ class WaterTankLevel(AliceSkill):
 		self._tank1 = int
 		super().__init__()
 
-
 	def onFullHour(self):
 		"""
 		On the hour get reminded if the grey water tank is full, and if user is not sleeping
 		:return: voice message that the tank is full
 		"""
-		device = self.DeviceManager.getDeviceByName("grey water tank")
+		device = self.DeviceManager.getDeviceByName("grey water tank 1")
+		self._AliceDev.logPrint(f"Device is {device}")
 		if not device:
 			return
-		if device.getParam('Switch2') == 'ON' and not self.UserManager.checkIfAllUser('sleeping'):
+		if device.getParam('Switch4') == 'ON' and not self.UserManager.checkIfAllUser('sleeping'):
 			self.say(
 				text='Your grey water is full. You might want to empty it'
 			)
@@ -65,7 +65,7 @@ class WaterTankLevel(AliceSkill):
 		:return: Returns the string alice will speak
 		"""
 		if not device:
-			self.logWarning(f"that device doesnt exist")
+			self._AliceDev.logPrint(f"That device doesnt exist")
 			return
 
 		originalDeviceState = json.loads(device.getParam('state'))
