@@ -22,10 +22,49 @@ class WaterTankLevel(AliceSkill):
 		self._AliceDev.logPrint(f"Device is {device}")
 		if not device:
 			return
-		if device.getParam('Switch4') == 'ON' and not self.UserManager.checkIfAllUser('sleeping'):
+		# If grey water reporting is enabled in the skill
+		if self.getConfig(key='greyWaterReporting'):
+			# and user is not sleeping and low level sensor is on...
+			if device.getParam('Switch1') == 'ON' and not self.UserManager.checkIfAllUser('sleeping'):
+				# If only the first and second sensors are on, , say its a quarter full
+				if device.getParam('Switch2') == 'ON' and device.getParam('Switch3') == 'OFF' and device.getParam('Switch4') == 'OFF':
+					self.say(
+						text='Your grey water tank is a quarter full. Time to keep a eye on it'
+					)
+					# Else if the second and third sensors are on, say its 3 quarters full
+				elif device.getParam('Switch2') == 'ON' and device.getParam('Switch3') == 'ON' and device.getParam('Switch4') == 'OFF':
+					self.say(
+						text='Your grey water tank is three quarters full. Is the valve open ?'
+					)
+					# Else if all sensors are on, say its full
+				else:
+					self.say(
+						text='Your grey water is full. It NEEDS attention now'
+					)
+	@IntentHandler('disableGreywaterMonitoring')
+	def greywaterSetting(self):
+		if self.getConfig(key='greyWaterReporting'):
 			self.say(
-				text='Your grey water is full. You might want to empty it'
+				text="Turning off Grey water monitoring"
 			)
+			self.updateConfig(key='greyWaterReporting', value=False)
+		else:
+			self.say(
+				text="Turning on Grey water monitoring"
+			)
+			self.updateConfig(key='greyWaterReporting', value=True)
+
+	@IntentHandler('disableRainMonitoring')
+	def disableMonitoring(self):
+		homeAssistant = HomeAssistant.HomeAssistant()
+
+		device = self.DeviceManager.getDeviceByName('rainwater hose connected')
+		homeAssistant.deviceClicked(uid=device.uid)
+		self._AliceDev.logPrint(f"device is hopefully rainwater hose ->> {device}")
+		if device.getParam('state') == 'on':
+			pump = self.DeviceManager.getDeviceByName('rain water pump')
+			if pump.getParam('state') == 'on':
+				homeAssistant.deviceClicked(uid=pump.uid)
 
 	@IntentHandler('SayWaterTankLevel')
 	def respondTankLevel(self, session: DialogSession, **_kwargs):
