@@ -1,7 +1,10 @@
 from core.base.model.AliceSkill import AliceSkill
 from core.dialog.model.DialogSession import DialogSession
 from core.util.Decorators import IntentHandler
-import  json
+import json
+from skills.HomeAssistant import HomeAssistant
+from skills.AliceDevTools import AliceDevTools
+
 
 
 class WaterTankLevel(AliceSkill):
@@ -11,6 +14,7 @@ class WaterTankLevel(AliceSkill):
 	"""
 	def __init__(self):
 		self._tank1 = int
+		self._AliceDev = AliceDevTools.AliceDevTools()
 		super().__init__()
 
 	def onFullHour(self):
@@ -78,7 +82,7 @@ class WaterTankLevel(AliceSkill):
 			text2 = self.getTankLevels(device=device2)
 			textOutPut = f"{text1} and {text2}"
 			if "None" in textOutPut:
-				self.logPrint(f'yes none is in {textOutPut}')
+				self._AliceDev.logPrint(f'yes none is in {textOutPut}')
 				textOutPut.replace("None", "")
 		else:
 			textOutPut = self.getTankLevels(device=device)
@@ -153,7 +157,7 @@ class WaterTankLevel(AliceSkill):
 			strippedDeviceName = device.displayName[:-1]
 		else:
 			strippedDeviceName = device.displayName
-		self.logPrint(f"displayname is {strippedDeviceName}")
+		self._AliceDev.logPrint(f"displayname is {strippedDeviceName}")
 
 		tankList = list()
 		for item in deviceTypes:
@@ -162,7 +166,7 @@ class WaterTankLevel(AliceSkill):
 				tankList.append(item)
 
 		if len(tankList) > 1:
-			self.logPrint(f"tank list is {tankList} +2")
+			self._AliceDev.logPrint(f"tank list is {tankList} +2")
 			if tankType == 4 and device.displayName == 'fresh water tank 1':
 				self._tank1 = 20.5 * switchNumber
 			if tankType == 4 and device.displayName == 'fresh water tank 2':

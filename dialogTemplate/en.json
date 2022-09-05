@@ -10,19 +10,22 @@
 				{
 					"value": "rain water",
 					"synonyms": [
-						"rain water tank"
+						"rain water tank",
+						"rainwater"
 					]
 				},
 				{
 					"value": "grey water",
 					"synonyms": [
-						"grey water tank"
+						"grey water tank",
+						"greywater"
 					]
 				},
 				{
 					"value": "fresh water",
 					"synonyms": [
-						"fresh water tank"
+						"fresh water tank",
+						"freshwater"
 					]
 				}
 			]
@@ -37,7 +40,9 @@
 				"how much water do i have in the {fresh water:=>WaterTank}",
 				"what's the level of the {rain water tank:=>WaterTank}",
 				"check the {fresh water tank:=>WaterTank}",
-				"how full is the {rain water:=>WaterTank} tank"
+				"how full is the {rain water:=>WaterTank} tank",
+				"how much {fresh water:=>WaterTank} do we have",
+				"update on {freshwater:=>WaterTank}"
 
 			],
 			"slots": [
@@ -47,6 +52,18 @@
 					"type": "WaterTank",
 					"missingQuestion": ""
 				}
+			]
+		},
+		{
+			"name": "disableGreywaterMonitoring",
+			"enabledByDefault": true,
+			"utterances": [
+				"kill grey water monitoring",
+				"enable grey water monitoring",
+				"stop monitoring the grey water",
+				"stop watching grey water",
+				"start watching the grey water",
+				"start monitoring grey water"
 			]
 		}
 	]
