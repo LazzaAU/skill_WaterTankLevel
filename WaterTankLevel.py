@@ -23,20 +23,28 @@ class WaterTankLevel(AliceSkill):
 		:return: voice message that the tank is full
 		"""
 		device = self.DeviceManager.getDeviceByName("grey water tank 1")
-		self._AliceDev.logPrint(f"Device is {device}")
+
 		if not device:
 			return
 		# If grey water reporting is enabled in the skill
 		if self.getConfig(key='greyWaterReporting'):
-			# and user is not sleeping and low level sensor is on...
-			if device.getParam('Switch1') == 'ON' and not self.UserManager.checkIfAllUser('sleeping'):
-				# If only the first and second sensors are on, , say its a quarter full
-				if device.getParam('Switch2') == 'ON' and device.getParam('Switch3') == 'OFF' and device.getParam('Switch4') == 'OFF':
+
+			# Turn States into a clean dictionary value
+			originalDeviceState = json.loads(device.getParam('state'))
+			updatedStates = self.processNumberOfStates(states=originalDeviceState)
+
+			self._AliceDev.logPrint(f"GreyWater switch 1 is > {updatedStates['Switch1']}")
+			self._AliceDev.logPrint(f"User sleeping is > {self.UserManager.checkIfAllUser('sleeping')}")
+
+			# if the user is not sleeping and low level sensor is on...
+			if updatedStates['Switch1'] == 'ON' and not self.UserManager.checkIfAllUser('sleeping'):
+				# If only the first and second sensors are on, say it's a quarter full
+				if updatedStates['Switch2'] == 'ON' and updatedStates['Switch3'] == 'OFF' and updatedStates['Switch4'] == 'OFF':
 					self.say(
 						text='Your grey water tank is a quarter full. Time to keep a eye on it'
 					)
 					# Else if the second and third sensors are on, say its 3 quarters full
-				elif device.getParam('Switch2') == 'ON' and device.getParam('Switch3') == 'ON' and device.getParam('Switch4') == 'OFF':
+				elif updatedStates['Switch1'] == 'ON' and updatedStates['Switch3'] == 'ON' and updatedStates['Switch4'] == 'OFF':
 					self.say(
 						text='Your grey water tank is three quarters full. Is the valve open ?'
 					)
@@ -45,6 +53,7 @@ class WaterTankLevel(AliceSkill):
 					self.say(
 						text='Your grey water is full. It NEEDS attention now'
 					)
+
 	@IntentHandler('disableGreywaterMonitoring')
 	def greywaterSetting(self):
 		if self.getConfig(key='greyWaterReporting'):
@@ -183,3 +192,22 @@ class WaterTankLevel(AliceSkill):
 				result = 13.3 * switchNumber
 				return f"that means approximately {result} litres "
 
+	def getGreyWaterStates(self, device):
+		"""
+		Return the tank level value
+		:param device: The device that was requested
+		:return: Returns the string alice will speak
+		"""
+		if not device:
+			self._AliceDev.logPrint(f"That device doesnt exist")
+			return
+
+		originalDeviceState = json.loads(device.getParam('state'))
+		updatedStates = self.processNumberOfStates(states=originalDeviceState)
+
+	#	numberOfSwitches = len(updatedStates.items())
+	#	switchNumber = numberOfSwitches
+
+		return updatedStates["Switch1"], updatedStates["Switch2"], updatedStates["Switch3"], updatedStates["Switch4"]
+
+		#if updatedStates[f"Switch{switchNumber}"] == 'ON':
