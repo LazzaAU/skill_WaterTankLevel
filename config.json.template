@@ -1,0 +1,8 @@
+{
+	"greyWaterReporting": {
+		"defaultValue": false,
+		"dataType": "boolean",
+		"isSensitive": false,
+		"description": "Turn off grey water reporting"
+	}
+}
